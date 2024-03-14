@@ -46,7 +46,7 @@ class Predictor(BasePredictor):
             default=2.0, description="Guidance scale", ge=1.0, le=5.0
         ),
         seed: int = Input(default=0, description="Seed", ge=0, le=0xFFFFFFFFFFFFFFFF),
-        num_images_per_prompt: int = Input(default=1, description="Number of images", ge=1, le=4),
+        num_samples: int = Input(default=1, description="Number of sampels", ge=1, le=4),
     ) -> Output:
         """Run a single prediction on the model"""
 
@@ -55,7 +55,7 @@ class Predictor(BasePredictor):
             person_image=model_image,
             person_mask_image=person_mask,
             face_mask_image=face_mask,
-            num_images_per_prompt=num_images_per_prompt,
+            num_images_per_prompt=num_samples,
             seed=seed,
             guidance_scale=guidance_scale,
             num_inference_steps=steps,
