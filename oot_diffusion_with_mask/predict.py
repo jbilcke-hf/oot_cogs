@@ -32,6 +32,7 @@ class Predictor(BasePredictor):
             default=2.0, description="Guidance scale", ge=1.0, le=5.0
         ),
         seed: int = Input(default=0, description="Seed", ge=0, le=0xFFFFFFFFFFFFFFFF),
+        num_samples: int = Input(default=1, description="Number of samples", ge=1, le=4),
     ) -> list[Path]:
         """Run a single prediction on the model"""
 
@@ -42,7 +43,7 @@ class Predictor(BasePredictor):
             steps=steps,
             cfg=guidance_scale,
             seed=seed,
-            num_samples=4,
+            num_samples=num_samples,
         )
 
         result_paths: list[Path] = []
